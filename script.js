@@ -11,7 +11,7 @@ function allClear() {
 function result() {
     try {
         // Replace percentages correctly before evaluation
-        const expression = display.value.replace("%", "/100");
+        const expression = display.value.replace(/%/g, "/100");
         display.value = eval(expression);
     } catch {
         alert("Invalid format used");
@@ -21,3 +21,10 @@ function result() {
 function clearLastElement() {
     display.value = display.value.slice(0, -1);
 }
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        result();
+    }
+});
